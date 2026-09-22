@@ -1,73 +1,109 @@
-# 🍎 SiriAI-RouteKit
+# SiriAI-RouteKit
 
-Siri AI / Apple Intelligence 中国大陆网络分流规则与中文小白教程，支持 Shadowrocket、Clash Meta / Mihomo。
+给中国大陆 iPhone 用户的 Siri / Apple Intelligence 网络分流规则与中文教程：把相关连接交给你已有的代理节点。
 
-**本项目与 Apple Inc. 无关联，为社区维护项目。规则只决定网络出口，不保证获得功能资格。** 当前为本地准备版本，尚未发布在线规则订阅地址。
+> 本项目只提供网络分流规则，不提供节点，也不能改变 Apple 对设备、账号或地区的功能限制。
 
-## 30 秒判断：我到底能不能用？
+## 我只想赶紧配置
 
-- [ ] 设备型号支持我需要的功能。
-- [ ] 系统版本符合对应功能要求。
-- [ ] 设备销售地区符合官方条件。
-- [ ] 当前所在地及 Apple 账户国家/地区符合要求。
-- [ ] 设备语言与 Siri 语言符合对应功能要求。
-- [ ] 本机有足够空间，模型已下载并完成初始化。
-- [ ] 如果目标是 Siri AI（Beta），已获得该 Beta 的使用资格。
-- [ ] 最后才检查：规则确实命中，策略选择及网络出口正常。
+如果你已经有自己的节点，按正在使用的 App 选下面一个入口，不需要两个都装。还没有可用的代理连接，先准备好再继续。
 
-前面的设备、账号、地区、系统或语言条件不满足时，换节点通常不能解决。
+### Shadowrocket
 
-## 先分清自己要用什么
+你用的是 **Shadowrocket（小火箭）**？从当前配置复制一份，再加入规则。
 
-**Apple 官方确认，核验于 2026-09-22：** 当前 Siri AI（Beta）与一般 Apple Intelligence 是两个不同的核对对象。Siri AI Beta 要求 27 系列系统及匹配的英语设备/Siri 语言；不能把一般 Apple Intelligence 对简体中文的支持套用到它。[Siri AI 官方要求](https://support.apple.com/zh-cn/148218)、[Apple Intelligence 官方说明](https://support.apple.com/zh-cn/121115)
+**[开始配置 Shadowrocket →](docs/Shadowrocket教程.md#最简单的做法在配置副本加-5-条规则)**
 
-中国大陆销售设备当前仍受 Apple Intelligence 限制。境外销售设备也要核对所在地和 Apple 账户地区。美国节点、修改设备地区、切换 App Store 账户均不是官方承诺的解锁方法。[设备与账号要求](docs/设备与账号要求.md)
+### Clash Meta / Mihomo
 
-## 选一个入口开始
+你的客户端说明里写着 **Clash Meta / Mihomo**？用这个教程把规则加入现有配置；不确定时，先查看 App 的“关于”或说明文档。
 
-1. 先读[设备与账号要求](docs/设备与账号要求.md)：机型、系统、语言、国行/外版、账户和模型空间。
-2. 使用小火箭：按 [Shadowrocket 教程](docs/Shadowrocket教程.md)把精确规则加入当前配置副本。
-3. 使用 Mihomo 内核：按 [Clash Meta / Mihomo 教程](docs/Clash-Meta教程.md)添加本地 provider 并复用现有策略组。
-4. 不成功：按[排障指南](docs/排障指南.md)逐层检查；术语参见[技术原理](docs/技术原理.md)。
+**[开始配置 Clash Meta / Mihomo →](docs/Clash-Meta教程.md#在当前配置副本添加)**
 
-没有代理节点的用户需要自行准备可用的网络服务。本项目只提供规则，不提供节点、订阅或账号。
+还没确认手机能不能用？先看[设备自查](#我的设备到底能不能用)。**中国大陆销售的 iPhone 目前仍受 Apple Intelligence 限制，换节点不能改变销售地区。**
 
-## 这 5 个精确域名做什么？
+## 配好了还是不能用？
 
-规则覆盖 Apple 官方列明的 Siri/听写、Private Cloud Compute（私有云计算，PCC）与 Apple Intelligence 扩展入口。传统 Siri 和听写使用 `guzzoni.apple.com`，也会随之改变出口。它不是全量 Apple 服务或完整模型下载依赖清单。[Apple 网络主机说明](https://support.apple.com/en-us/101555)
+先别急着换节点。按下面的顺序检查，在哪一步发现问题，就先处理那一步。
 
-- [唯一源导入的域名清单](rules/domains.txt)与[逐域来源](rules/provenance.json)。
-- [Shadowrocket 规则集](rules/shadowrocket.list)与[无节点配置示例](examples/shadowrocket.conf)。
-- [Mihomo classical provider](rules/clash-meta.yaml)与[无节点配置示例](examples/clash-meta.yaml)。
-- [18 条截图规则完整审计](research/domain-audit.json)：5 条接纳、5 条待验证、8 条不进入默认规则；没有添加断网 REJECT 规则来“拒绝”候选。
+1. **设备**：你的 iPhone 型号在支持名单里吗？[查看机型和支持名单](#我的设备到底能不能用)。
+2. **系统**：在“设置 → 通用 → 关于本机”查看 iOS 版本，再[核对你想用的功能需要哪个版本](docs/设备与账号要求.md#我的设备和系统支持吗)。Siri AI Beta 要求 27 系列系统；旧版已有部分 Apple Intelligence，不代表能用新的 Siri。
+3. **销售地区**：手机是不是中国大陆销售版本？不知道就[按下方方法确认](#不知道自己的手机是不是国行这样查)。改“语言与地区”里的地区不会改变销售版本。
+4. **Apple Account（Apple 账户）**：在 [Apple 账户网页](https://account.apple.com/)登录设备主要账号，打开“个人信息 → 国家/地区”查看；再[对照账号地区与实际所在地的要求](docs/设备与账号要求.md#中国大陆销售设备境外设备和地区)。别只看 App Store 登录了哪个账号。
+5. **设备与 Siri 语言**：两处语言都符合要求吗？Siri AI Beta 目前要求匹配的英语。[查看两处语言设置步骤](docs/设备与账号要求.md#语言和模型下载)。
+6. **模型下载**：回到“设置 → Siri”（部分旧版叫“Apple 智能与 Siri”）查看启用提示。如果还在下载，到[“设置 → 通用 → iPhone 储存空间”](https://support.apple.com/zh-cn/108429)看剩余空间，再[对照机型所需空间](docs/设备与账号要求.md#语言和模型下载)。
+7. **Siri AI 开放状态**：在“设置 → Siri → Try Siri AI (Beta)”查看是否仍在等待名单中。排队与下载不同，没有固定等候时长。[没有入口或尚未开放怎么办](docs/排障指南.md)。
+8. **最后查网络**：确认新配置已启用、规则确实生效、选中了可用出口。跟着 [Shadowrocket 教程](docs/Shadowrocket教程.md#最简单的做法在配置副本加-5-条规则)或 [Mihomo 教程](docs/Clash-Meta教程.md#在当前配置副本添加)检查规则和连接记录。
 
-本项目不把 iCloud Private Relay、商店下载、地图整族域名或 `siri` 关键字当作 Siri AI 专属流量。不能把截图中的 18 条全部照抄进日常配置。
+## 我的设备到底能不能用？
 
-## 证据怎么读？
+先看这三项，再继续核对上面的系统、语言和开放状态：
 
-| 标记 | 含义 |
-|---|---|
-| Apple 官方确认 | 资格、服务用途有 Apple 直达来源和核验日期。 |
-| 本项目验证 | 脚本已检查规则、来源锁、生成一致性和示例引用；这不是设备联网实测。 |
-| 社区经验 | Shadowrocket 详细界面和配置写法参考社区维护手册，明确为非官方资料。 |
-| 尚待验证 | 候选域名、真实设备功能、实际出口及客户端导入结果。 |
+- [ ] **机型支持吗？** iPhone 15 Pro / Pro Max、iPhone 16 系列及以后、iPhone Air 在支持名单中。在“设置 → 通用 → 关于本机”看“型号名称”；[找不到时看 Apple 操作说明](https://support.apple.com/zh-cn/guide/iphone/iph3dd5fc7e/ios)。其他设备见[完整名单](docs/设备与账号要求.md#我的设备和系统支持吗)。
+- [ ] **是不是中国大陆销售版本？** 如果是，目前仍受 Apple Intelligence 限制；不确定就[先确认销售地区](#不知道自己的手机是不是国行这样查)。
+- [ ] **账号地区和实际所在地符合要求吗？** 境外销售的设备也要核对。人在中国大陆、Apple 账户地区也是中国大陆时，一般 Apple Intelligence 不可用；外区账号也不保证能用 Siri AI Beta。[查看账号与地区条件](docs/设备与账号要求.md#中国大陆销售设备境外设备和地区)；[不知道账号地区在哪看](https://support.apple.com/zh-cn/118283)。
 
-**尚未进行 Shadowrocket 真机导入、Apple 设备功能或真实网络请求实测。** 静态验证通过不能证明 Siri AI 可用。Mihomo 示例默认以 `REJECT` 显式阻断目标流量，需先按教程关联自己已有的出口。两个独立示例的其他流量均直连；优先把所需部分合入当前配置副本，保留原有兜底规则。
+### 不知道自己的手机是不是国行？这样查
 
-## 安全与隐私
+先查原始购机订单或发票，向原购买渠道确认设备的销售地区。二手或转售设备要确认原始销售地区，不能只看现在在哪里买到；资料不全时可[联系 Apple 支持咨询](https://support.apple.com/zh-cn/contact)。
 
-不需要 MITM，不需要安装未知 CA，不需要解密 Siri 流量，也不需要向本项目提供 Apple 账户密码或代理订阅。不要公开密码、2FA 验证码、节点用户名密码、API token、订阅 URL、账号邮箱或完整私人配置。排障只记录脱敏后的机型/版本、域名、规则、时间和错误类别。[反馈模板](.github/ISSUE_TEMPLATE/问题反馈.md)
+“设置 → 通用 → 语言与地区”里的地区、当前插的 SIM 卡或节点所在地区，都不能替代这项确认。[销售地区为什么影响功能](docs/设备与账号要求.md#中国大陆销售设备境外设备和地区)。
 
-## 维护与许可
+## 网络分流到底解决什么？
 
-唯一规则源为 [BrownieCoder/proxy-rulesets](https://github.com/BrownieCoder/proxy-rulesets)；本仓库是教学与多客户端生成输出。版本和 SHA256 锁在 [source.lock.json](source.lock.json)，不手工维护第二套域名。更新方法见[维护与来源](docs/维护与来源.md)。
+它告诉代理 App：“遇到这些 Siri / Apple Intelligence 连接，就交给我选好的出口。”如果相关连接没有走到你想用的节点，规则可以帮助你调整这条路径。
 
-Python 3.10+ 标准库即可离线验证，无需安装第三方包：
+网络节点不是万能解锁。硬件不支持、账号或地区受限、模型未准备好、还在等待开放，都需要分别处理。[了解分流原理](docs/技术原理.md)。
 
-```sh
-python3 scripts/rules.py validate
-python3 -m unittest discover -s tests
-git diff --check
-```
+## 当前规则覆盖什么？
 
-采用 GPL-2.0-only，保留 [LICENSE](LICENSE) 原文和[来源致谢](ATTRIBUTION.md)。README、教程及项目注释使用简体中文；许可证与协议字段保留规范原文。
+目前包含 **5 个精确域名**，对应 Apple 列出的 Siri/听写、私有云计算（用于部分 Apple Intelligence 请求）和 Apple Intelligence 扩展入口。[查看域名清单](rules/domains.txt)。
+
+其中 `guzzoni.apple.com` 也用于传统 Siri 和听写，它们会一起改变出口。这份规则不覆盖全部 Apple 服务，也不是完整的模型下载清单。[服务用途与规则选择](docs/技术原理.md#为什么只使用精确域)。
+
+## Shadowrocket 快速说明
+
+日常使用按教程在**当前配置的副本**里加规则，保存后编译并启用副本，再测试是否生效。原配置留着，出问题可以切回去。
+
+想用文件导入时，先看教程的[文件与纯文本说明](docs/Shadowrocket教程.md#使用文件或纯文本)：规则文件和完整配置用法不同，示例也不适合直接覆盖日常配置。
+
+## Clash / Mihomo 快速说明
+
+Clash Meta 是 Mihomo 的旧称。示例不携带真实节点，需要按教程接入你已有的节点或策略组（用来选择出口的分组）。日常使用从[在现有配置副本添加规则](docs/Clash-Meta教程.md#在当前配置副本添加)开始；独立示例见[无节点示例说明](docs/Clash-Meta教程.md#无节点示例怎样使用)。
+
+Mihomo 通常从上往下匹配规则，先匹配到哪条就使用哪条。新增规则的位置会影响是否生效，[教程说明了插入位置及 UDP 例外](docs/Clash-Meta教程.md#顺序和-udp-的细节)，不用重排整份配置。
+
+## FAQ
+
+**有 Apple Intelligence，但没有新的 Siri？**
+
+有写作工具、彩色 Siri 界面或 ChatGPT 扩展，不等于获得了 Siri AI Beta。它有单独的系统、语言、地区和等待名单要求。[看两者的区别](docs/设备与账号要求.md#apple-intelligence-与-siri-ai-的关系)。
+
+**App Store 已经登录美区账号，为什么还是不行？**
+
+App Store 登录的账号可能与设备主要 Apple Account 不同。商店是美区，不代表设备、主要账号和功能资格都符合要求。[先分清你用的是哪个账号](docs/设备与账号要求.md#外区账号到底改了什么)，别急着退出 iCloud 或改区。
+
+**有可以直接添加的在线规则订阅吗？**
+
+目前尚未发布在线规则订阅地址，请按教程使用本地文件或手动添加规则。
+
+更多情况见[常见问题](docs/常见问题.md)和[排障指南](docs/排障指南.md)。
+
+## 隐私安全
+
+不需要安装证书或解密 Siri 流量，也不需要提供 Apple 账户密码。求助时不要公开完整配置、代理订阅地址、节点密码、验证码或账号邮箱。按[问题反馈模板](.github/ISSUE_TEMPLATE/问题反馈.md)提供去掉个人信息的描述即可。
+
+## 深入阅读
+
+- [设备与账号要求](docs/设备与账号要求.md)：各设备、系统、地区、语言及模型空间要求，附 Apple 官方来源。
+- [排障指南](docs/排障指南.md)：按症状检查、记录问题和回退配置。
+- [技术原理](docs/技术原理.md)：分流如何工作、为什么只选这些域名。
+- [维护与来源](docs/维护与来源.md)：规则来源、更新方式和开发者检查方法。
+- [域名审计](research/domain-audit.json)：各候选域名的取舍与依据。
+- [验证记录](docs/验证记录.md)：已做哪些检查。目前尚未完成 Shadowrocket 真机导入和 Apple 设备功能实测。
+
+规则来自 [BrownieCoder/proxy-rulesets](https://github.com/BrownieCoder/proxy-rulesets)。项目采用 [GPL-2.0-only](LICENSE)，详见[来源致谢](ATTRIBUTION.md)。
+
+## 关于本项目
+
+SiriAI-RouteKit 是社区维护项目，与 Apple Inc. 无关联。
