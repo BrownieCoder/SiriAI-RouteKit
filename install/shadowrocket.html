@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>安装 Siri AI 规则模块 · SiriAI-RouteKit</title><link rel="stylesheet" href="style.css"><script src="install.js" defer></script></head>
+<body data-client="shadowrocket"><main>
+<header><strong>🍎 SiriAI-RouteKit</strong><a href="index.html">更换客户端</a></header>
+<p class="eyebrow">Shadowrocket</p><h1>安装 Siri AI 规则模块</h1><p class="intro">保留现有节点、主配置、DNS 和兜底规则。模块使用你已选中的代理。</p>
+<p class="notice">模块只更改 5 个精确目标的出口；其中 guzzoni.apple.com 也用于传统 Siri 和听写。模块可能优先于主配置里对这 5 个目标的规则（包括拒绝规则）。有自定义拦截要求时，先看教程核对冲突。</p>
+<div class="actions"><a class="primary" id="open-client" role="button" aria-disabled="true" tabindex="0">正在检查在线文件…</a><p class="status" id="status" role="status">正在检查在线文件；不可用时不会启动客户端。</p></div>
+<noscript><p class="notice">浏览器未启用 JavaScript。请使用下方地址手动导入；若地址返回 404，说明在线资源尚未发布。无需更改浏览器权限。</p></noscript>
+<section aria-labelledby="fallback"><h2 id="fallback">没有自动打开？复制地址</h2>
+<label for="resource-url">完整 HTTPS 地址（在线文件可用后再导入）</label><input id="resource-url" type="url" value="https://raw.githubusercontent.com/BrownieCoder/SiriAI-RouteKit/main/modules/siri-ai.module" readonly spellcheck="false">
+<button id="copy-url" type="button" hidden>复制模块地址</button><p id="copy-status" class="status" role="status">也可长按或全选上方地址，手动复制。</p>
+<ol><li>没有自动打开？复制上方模块地址。</li><li>打开 Shadowrocket → 配置 → 模块 → +，粘贴地址并确认安装、启用。</li><li>首页使用已有可用代理，全局路由选“配置”；若已有这些设置，无需重复修改。</li></ol>
+<p><a href="https://github.com/BrownieCoder/SiriAI-RouteKit/blob/main/docs/Shadowrocket教程.md">查看详细教程和回退方法 →</a></p></section>
+<section><h2>装好了，还是不能用？</h2><p>先查设备与系统、销售地区、账户地区、语言、模型和开放状态，最后查规则命中及出口。国行 iPhone 目前不能使用 Apple Intelligence。</p><a href="https://github.com/BrownieCoder/SiriAI-RouteKit/blob/main/docs/排障指南.md">按顺序排查 →</a></section>
+<footer>不提供节点，无需证书或 MITM，不收集个人信息。页面只核对公开安装文件，不能判断客户端是否安装成功。Shadowrocket 协议来自社区手册；客户端尚未真机实测。<a href="https://github.com/BrownieCoder/SiriAI-RouteKit/blob/main/docs/客户端导入能力.md">依据与限制</a></footer>
+</main></body></html>
