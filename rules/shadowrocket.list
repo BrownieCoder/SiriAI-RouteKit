@@ -1,0 +1,6 @@
+# 自动生成的规则集；导入 [Rule] 时需补充目标策略。
+DOMAIN,apple-relay.apple.com
+DOMAIN,apple-relay.cloudflare.com
+DOMAIN,apple-relay.fastly-edge.com
+DOMAIN,cp4.cloudflare.com
+DOMAIN,guzzoni.apple.com

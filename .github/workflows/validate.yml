@@ -1,0 +1,23 @@
+name: 规则与生成物验证
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出本项目
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: 校验锁定版本
+        run: python3 scripts/rules.py validate
+      - name: 运行拒绝漂移与来源测试
+        run: python3 -m unittest discover -s tests
+      - name: 重新生成并核对
+        run: |
+          python3 scripts/rules.py generate
+          git diff --exit-code -- rules examples
+          git diff --check

@@ -1,0 +1,7 @@
+# 自动生成；修改须回到唯一源仓库。
+payload:
+  - DOMAIN,apple-relay.apple.com
+  - DOMAIN,apple-relay.cloudflare.com
+  - DOMAIN,apple-relay.fastly-edge.com
+  - DOMAIN,cp4.cloudflare.com
+  - DOMAIN,guzzoni.apple.com

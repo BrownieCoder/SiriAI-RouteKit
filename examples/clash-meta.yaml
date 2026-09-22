@@ -1,0 +1,18 @@
+# 自动生成；本文件是无节点演示，不应覆盖日常配置。
+# REJECT 是未配置出口时的显式阻断；先按教程关联已有策略或节点。
+# 将 rules/clash-meta.yaml 放入内核 HomeDir 下对应相对路径。
+mode: rule
+proxy-groups:
+  - name: SiriAI
+    type: select
+    proxies:
+      - REJECT
+rule-providers:
+  SiriAI:
+    type: file
+    behavior: classical
+    format: yaml
+    path: ./rules/clash-meta.yaml
+rules:
+  - RULE-SET,SiriAI,SiriAI
+  - MATCH,DIRECT

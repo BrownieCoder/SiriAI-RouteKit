@@ -1,0 +1,19 @@
+{
+  "source_url": "https://github.com/BrownieCoder/proxy-rulesets",
+  "commit": "760db6bb7adec25ec5eab38359536fbdcdf7eb29",
+  "license": "GPL-2.0-only",
+  "files": {
+    "rules/siri-ai-domains.txt": {
+      "local": "rules/domains.txt",
+      "sha256": "197ca6a518470f909e2a67a42f5ea2a9438ef68071ec80692f7a1b48f184c105"
+    },
+    "rules/siri-ai-provenance.json": {
+      "local": "rules/provenance.json",
+      "sha256": "e2b64af7ccc88581fe4b9f901e6a0f109dfd7f38164d61557a4aaac2f653fce1"
+    },
+    "research/SiriAI-audit.json": {
+      "local": "research/domain-audit.json",
+      "sha256": "032fca12a84bad08a39097ae2a61bbe2350936b88c35d4ac16dad5a61f81c03f"
+    }
+  }
+}
