@@ -1,0 +1,10 @@
+#!name=Siri AI
+#!desc=Siri AI / Apple Intelligence 精确网络分流
+# 自动生成；仅包含规则，使用已选择的代理。
+
+[Rule]
+DOMAIN,apple-relay.apple.com,PROXY
+DOMAIN,apple-relay.cloudflare.com,PROXY
+DOMAIN,apple-relay.fastly-edge.com,PROXY
+DOMAIN,cp4.cloudflare.com,PROXY
+DOMAIN,guzzoni.apple.com,PROXY

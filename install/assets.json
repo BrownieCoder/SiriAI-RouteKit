@@ -1,0 +1,8 @@
+{
+  "examples/clash-meta.yaml": "e38503a77f870a415e971069feb44c8081d5b04d17f7082fe3403cfe5e39d67b",
+  "examples/clash-remote.yaml": "77e47edae2691b62716b1260b8b5abf92cb33f0c8b36493601ae3712c0063e6c",
+  "examples/shadowrocket.conf": "a0aacfe466058a547ce761af07bea8bed86c02cf6d2356cffcba46d2a3121525",
+  "modules/siri-ai.module": "9541f4533e72d93b7e8dd408ab7f55388a29510e8915f496bfaed90f45f65733",
+  "rules/clash-meta.yaml": "2559fff9ee938a18722920148df7b41e441a8fd1840b56d6bd079db04e4a100b",
+  "rules/shadowrocket.list": "e7be1a95ea10cb2dc9203069a22b3dba38a941b8a9aa6381f0106572038dec99"
+}
