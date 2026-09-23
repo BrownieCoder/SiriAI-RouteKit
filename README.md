@@ -12,11 +12,15 @@
 
 ### Shadowrocket
 
-**[安装 Siri AI 规则模块 →](docs/Shadowrocket教程.md#安装模块)**
+**复制模块地址，打开小火箭粘贴添加：**
 
-安装一个独立模块，**不会替换你的节点或主配置**，不改 DNS 和 FINAL。只调整 5 个精确目标的出口；模块可能覆盖这几个目标原有的主配置规则。
+```text
+https://raw.githubusercontent.com/BrownieCoder/SiriAI-RouteKit/6bce8d5563cd13aef913035971decab4890fc267/modules/siri-ai.module
+```
 
-一键入口待上线；当前先[下载模块文件](modules/siri-ai.module)，按教程导入。上线后打不开 App？复制模块地址，打开“配置 → 模块 → +”粘贴。详细步骤就在上方入口。
+**[看九宫格图解：配置 → 模块 → ＋ → 粘贴 → 启用](docs/Shadowrocket教程.md#安装模块)**
+
+不会替换你的节点或主配置，不需要证书。需要已有可用节点，并使用“配置”路由；模块可能覆盖这 5 个目标原有的主配置规则。一键网页入口待上线，现在按图复制粘贴即可添加。
 
 ### ClashX.Meta
 
