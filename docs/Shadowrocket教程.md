@@ -2,17 +2,17 @@
 
 适合已经有可用代理节点的用户。模块只给 5 个精确目标指定 `PROXY` 出口，不替换主配置或节点，不改 DNS、FINAL，也不包含证书、MITM、脚本或重写。`PROXY` 使用你已选择的代理，不要求创建 `SiriAI` 之类的自定义组。
 
-**当前状态：模块已生成，但稳定远程地址和安装页还未上线。** 不把未发布地址当成可用订阅。协议与菜单依据来自[社区手册](https://github.com/LOWERTOP/Shadowrocket)，不是官方协议承诺；本项目尚未真机导入。[详细依据](客户端导入能力.md)。
+**当前状态：固定版本的模块地址已可下载，一键安装页尚未上线。** 可先复制下方模块 URL 到“配置 → 模块 → +”。协议与菜单依据来自[社区手册](https://github.com/LOWERTOP/Shadowrocket)，不是官方协议承诺；本项目尚未真机导入。[详细依据](客户端导入能力.md)。
 
 ## 安装模块
 
 **首选方式（上线后）：打开项目安装页 → 客户端确认安装。** 页面会核对远程模块，失败时不启动导入，不会显示未经确认的“安装成功”。
 
-上线后的稳定地址预留如下；目前只作为发布检查目标，不能直接使用：
+下面第一行是待上线的安装页；第二行是已核对内容的固定版本模块地址，可复制导入：
 
 ```text
 https://browniecoder.github.io/SiriAI-RouteKit/install/shadowrocket.html
-https://raw.githubusercontent.com/BrownieCoder/SiriAI-RouteKit/main/modules/siri-ai.module
+https://raw.githubusercontent.com/BrownieCoder/SiriAI-RouteKit/6bce8d5563cd13aef913035971decab4890fc267/modules/siri-ai.module
 ```
 
 当前可用的备用方式：

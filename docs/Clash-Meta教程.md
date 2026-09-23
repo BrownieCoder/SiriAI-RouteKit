@@ -2,10 +2,10 @@
 
 **这些客户端的快捷链接导入的是一份完整配置，不会自动把 Siri AI 规则合并进你的订阅。** 本项目不提供节点。要保留日常路由，请使用下方的配置副本方式；独立示例只适合查看结构，不能当作直接可用的网络配置。
 
-安装页和新版远程示例尚未上线。下面的文件可以本地下载；稳定 HTTPS 地址目前仅供发布检查，不能把尚未发布的地址当作可用订阅：
+一键安装页尚未上线。下面是已核对内容的固定版本示例地址，可复制到客户端导入；仍须注意无节点和启用后的影响：
 
 ```text
-https://raw.githubusercontent.com/BrownieCoder/SiriAI-RouteKit/main/examples/clash-remote.yaml
+https://raw.githubusercontent.com/BrownieCoder/SiriAI-RouteKit/6bce8d5563cd13aef913035971decab4890fc267/examples/clash-remote.yaml
 ```
 
 [下载自包含示例](../examples/clash-remote.yaml)。它显式使用空节点列表、SiriAI 组中的 `REJECT` 和最后的 `MATCH,DIRECT`：启用后 Siri AI 的 5 个目标被阻断，其余流量直连。没有外部文件依赖，不会读取你已有的节点。导入机制依据官方文档与发布源码，真机 GUI 导入尚未测试。[客户端能力与来源](客户端导入能力.md)。

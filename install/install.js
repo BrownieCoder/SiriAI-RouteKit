@@ -1,7 +1,8 @@
 /* 固定目标，不读取 URL 查询参数，不接受外部重定向目标。 */
 (() => {
   "use strict";
-  const rawBase = "https://raw.githubusercontent.com/BrownieCoder/SiriAI-RouteKit/main/";
+  // 校验、复制和客户端二次下载必须绑定同一已发布提交；更新步骤见维护文档。
+  const rawBase = "https://raw.githubusercontent.com/BrownieCoder/SiriAI-RouteKit/6bce8d5563cd13aef913035971decab4890fc267/";
   const profiles = {
     shadowrocket: { path: "modules/siri-ai.module", scheme: "shadowrocket://install?module=", label: "一键导入 Shadowrocket", auto: true },
     "clashx-meta": { path: "examples/clash-remote.yaml", scheme: "clashx://install-config?name=SiriAI-Example-No-Nodes&url=", label: "导入示例并切换到 ClashX.Meta" },
