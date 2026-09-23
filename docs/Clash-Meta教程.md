@@ -1,12 +1,52 @@
-# Clash Meta / Mihomo：本地规则 provider
+# Clash / Mihomo：先分清“导入示例”和“添加规则”
 
-核验于 2026-09-22，使用当前 [Mihomo provider 文档](https://wiki.metacubex.one/config/rule-providers/)、[内容格式](https://wiki.metacubex.one/config/rule-providers/content/)与[路由语法](https://wiki.metacubex.one/config/rules/)。Clash Meta 是 Mihomo 的旧称，图形客户端的按钮和覆写机制各不相同。
+**这些客户端的快捷链接导入的是一份完整配置，不会自动把 Siri AI 规则合并进你的订阅。** 本项目不提供节点。要保留日常路由，请使用下方的配置副本方式；独立示例只适合查看结构，不能当作直接可用的网络配置。
 
-## 先认识三个词
+一键安装页尚未上线。下面是已核对内容的固定版本示例地址，可复制到客户端导入；仍须注意无节点和启用后的影响：
 
-- **rule-provider：** 一个规则文件，本项目是 5 条 `DOMAIN` 精确匹配。
-- **policy / 策略组：** 选用哪个已有节点或出口。
-- **first-match：** 按规则顺序匹配，前面命中后就可能不再到后面。因此 SiriAI 必须在宽泛 Apple/China/Global 前面。
+```text
+https://raw.githubusercontent.com/BrownieCoder/SiriAI-RouteKit/6bce8d5563cd13aef913035971decab4890fc267/examples/clash-remote.yaml
+```
+
+[下载自包含示例](../examples/clash-remote.yaml)。它显式使用空节点列表、SiriAI 组中的 `REJECT` 和最后的 `MATCH,DIRECT`：启用后 Siri AI 的 5 个目标被阻断，其余流量直连。没有外部文件依赖，不会读取你已有的节点。导入机制依据官方文档与发布源码，真机 GUI 导入尚未测试。[客户端能力与来源](客户端导入能力.md)。
+
+## ClashX.Meta
+
+macOS 客户端；已核验 v1.4.45 的远程配置导入。
+
+**上线后入口：导入 SiriAI 示例配置。确认后会自动切换到它。** 原配置通常保留，但同名项可能被更新；不要沿用日常配置的名字，遇到同名提示请取消或另取名称。示例会阻断这 5 个目标，并使其他流量直连。
+
+无法自动打开时：
+
+1. 复制安装页的完整示例 URL。
+2. 在“配置 → 托管配置 → 管理”添加 URL，使用一个尚未使用的配置名称。以所装版本实际菜单为准。
+3. 确认会导入并切换。演示后从配置列表切回原配置；日常分流请继续下方“在当前配置副本添加”。
+
+预留安装页：`https://browniecoder.github.io/SiriAI-RouteKit/install/clashx-meta.html`。未上线前不作为可用按钮。
+
+## Clash Verge Rev
+
+已核验 v2.5.5；源码注册 Windows、macOS、Linux 的导入协议。macOS 官方文档要求 2.0 及以后；浏览器或系统关联问题可能阻止打开，复制地址即可，不必为此修改注册表或权限。
+
+**上线后入口：导入 SiriAI 示例配置。** 已有当前配置时，新示例追加到列表；首次导入可能自动启用。它不是规则覆写文件，不会自动合并。启用示例会阻断这 5 个目标，并使其他流量直连。
+
+无法自动打开时：
+
+1. 复制安装页的完整示例 URL。
+2. 打开“订阅”，粘贴 URL 并点“导入”。
+3. 保持原配置启用；首次导入时不要把无节点示例当日常配置。需要日常分流时，按下面步骤关联现有出口。
+
+预留安装页：`https://browniecoder.github.io/SiriAI-RouteKit/install/clash-verge-rev.html`。未上线前不作为可用按钮。
+
+## 其他 Mihomo 客户端
+
+只使用该 App 明确提供的“从 URL 导入”或文件导入入口，先确认是否会自动切换或覆盖。没有入口时使用[现有配置副本](#在当前配置副本添加)。未专门验证 Mihomo Party 等其他 GUI，不为它们构造一键链接。
+
+## 一键导入失败：先复制地址
+
+先检查完整 HTTPS 地址能否打开，再检查客户端是否安装。浏览器阻止唤起时，直接复制 URL 到上面的导入入口；离线时下载示例文件。**不要将 `rules/clash-meta.yaml` 当完整订阅导入**，它只有规则列表。
+
+以下为高级手动备用路径。Mihomo 会从上往下找第一条匹配规则，所以 Siri AI 规则必须在宽泛 Apple 规则前面，安全拦截仍优先。[内核路由文档](https://wiki.metacubex.one/config/rules/)。
 
 ## 在当前配置副本添加
 

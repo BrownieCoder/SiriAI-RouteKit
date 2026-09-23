@@ -16,8 +16,10 @@ jobs:
         run: python3 scripts/rules.py validate
       - name: 运行拒绝漂移与来源测试
         run: python3 -m unittest discover -s tests
+      - name: 验证安装页交互
+        run: node --test tests/install.test.cjs
       - name: 重新生成并核对
         run: |
           python3 scripts/rules.py generate
-          git diff --exit-code -- rules examples
+          git diff --exit-code -- rules examples modules install/assets.json
           git diff --check

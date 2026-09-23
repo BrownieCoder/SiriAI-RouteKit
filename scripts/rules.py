@@ -106,10 +106,26 @@ rules:
   - RULE-SET,SiriAI,SiriAI
   - MATCH,DIRECT
 """
-    return {"rules/clash-meta.yaml": provider.encode(),
+    module = ("#!name=Siri AI\n"
+              "#!desc=Siri AI / Apple Intelligence 精确网络分流\n"
+              "# 自动生成；仅包含规则，使用已选择的代理。\n\n[Rule]\n"
+              + "".join(f"DOMAIN,{d},PROXY\n" for d in domains))
+    remote_example = ("# 自动生成；完整的无节点示例，不能自动合并现有配置。\n"
+                      "# 启用后：这五个目标被阻断，其他流量直连。请勿作为日常配置。\n"
+                      "mode: rule\nproxies: []\nproxy-groups:\n  - name: SiriAI\n"
+                      "    type: select\n    proxies:\n      - REJECT\nrules:\n"
+                      + "".join(f"  - DOMAIN,{d},SiriAI\n" for d in domains)
+                      + "  - MATCH,DIRECT\n")
+    outputs = {"rules/clash-meta.yaml": provider.encode(),
             "rules/shadowrocket.list": shadow.encode(),
             "examples/shadowrocket.conf": shadow_example.encode(),
-            "examples/clash-meta.yaml": mihomo.encode()}
+            "examples/clash-meta.yaml": mihomo.encode(),
+               "modules/siri-ai.module": module.encode(),
+               "examples/clash-remote.yaml": remote_example.encode()}
+    outputs["install/assets.json"] = (json.dumps(
+        {name: digest(content) for name, content in outputs.items()},
+        ensure_ascii=False, indent=2, sort_keys=True) + "\n").encode()
+    return outputs
 
 
 def write_files(root, files):
